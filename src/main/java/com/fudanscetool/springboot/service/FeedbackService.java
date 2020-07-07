@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class FeedbackkService {
+public class FeedbackService {
     @Autowired
     private FeedbackDAO fdao;
 
