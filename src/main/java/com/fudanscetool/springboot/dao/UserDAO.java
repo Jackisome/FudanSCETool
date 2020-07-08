@@ -25,4 +25,7 @@ public interface UserDAO {
 
     @Select("SELECT COUNT(*) FROM user")
     int countUserNumber();
+
+    @Update("UPDATE user SET ownedProjectNumber=#{owwnedProjectNumber} WHERE userID=#{userID}")
+    int updateOwnedProjectNumber(String userID, int ownedProjectNumber);
 }
