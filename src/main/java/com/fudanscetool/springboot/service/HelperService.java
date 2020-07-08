@@ -1,22 +1,27 @@
 package com.fudanscetool.springboot.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
 public class HelperService {
-    /*
-    @Value()
+    @Value("useIntroduction")
     private String useIntroduction;
 
-    @Value()
+    @Value("modelIntroduction")
     private String modelIntroduction;
 
-    public String showIntroduction() {}
+    public String showIntroduction() {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
 
-    public String showModel() {}
+        return useIntroduction;
+    }
 
-     */
+    public String showModel() {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
+
+        return modelIntroduction;
+    }
 }
-

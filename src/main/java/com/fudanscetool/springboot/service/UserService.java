@@ -16,21 +16,68 @@ public class UserService {
     @Autowired
     private ProjectDAO pdao;
 
-    public boolean register(User user) {return true;}
+    public boolean register(User user) {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
 
-    public boolean login(User user) {return true;}
+        return udao.insertUser(user) != 0;
+    }
 
-    public boolean addAdministrator(User user) {return true;}
+    public boolean login(User user) {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
 
-    public boolean changePassword(String userID, String oldPassword, String newPassword) {return true;}
+        return user.getPassword().equals(udao.searchUser(user.getUserID()));
+    }
 
-    public List<User> showAllUser() {return null;}
+    public boolean addAdministrator(User user) {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
 
-    public boolean deleteUser(String userID) {return true;}
+        user.setAdministrator(true);
+        return udao.insertUser(user) != 0;
+    }
 
-    public User findUser(String userID) {return null;}
+    public boolean changePassword(String userID, String oldPassword, String newPassword) {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
 
-    public boolean changeUserProjectNumber(String userID, int changeNumber) {return true;}
+        return udao.updatePassword(userID, newPassword) != 0;
+    }
 
-    public int countUserNumber() {return udao.countUserNumber();}
+    public List<User> showAllUser() {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
+
+        return udao.searchAllUser();
+    }
+
+    public boolean deleteUser(String userID) {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
+
+        return udao.deleteUser(userID) != 0;
+    }
+
+    public User findUser(String userID) {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
+
+        return udao.searchUser(userID);
+    }
+
+    public boolean changeUserProjectNumber(String userID, int changeNumber) {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
+
+        User user = udao.searchUser(userID);
+        return udao.updateOwnedProjectNumber(userID, user.getOwnedProjectNumber() + changeNumber) != 0;
+    }
+
+    public int countUserNumber() {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
+
+        return udao.countUserNumber();
+    }
 }

@@ -11,7 +11,7 @@ public interface ProjectDAO {
 
     Project searchProject(String projectID);
 
-    int updateRealLoad(String projectID, float realLoad);
+    int updateRealLoad(String projectID, double realLoad);
 
     int updateProjectStatus(String projectID, String status);
 
@@ -25,5 +25,5 @@ public interface ProjectDAO {
 
     int countProjectNumber(String userID);
 
-    int countWaitProjetNumber();
+    int countWaitProjectNumber();
 }

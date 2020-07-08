@@ -4,11 +4,9 @@ import com.fudanscetool.springboot.pojo.Stage1;
 import com.fudanscetool.springboot.pojo.Stage2;
 import com.fudanscetool.springboot.pojo.Stage3;
 
-import java.util.List;
-
 public interface EstimateModel {
     void train();
-    float estimateStage1(List<Float> scaleFactor, Stage1 stage);
-    float estimateStage2(List<Float> scaleFactor, Stage2 stage);
-    float estimateStage3(List<Float> scaleFactor, Stage3 stage);
+    double estimateStage1(double weight, Stage1 stage);
+    double estimateStage2(double weight, Stage2 stage);
+    double estimateStage3(double weight, Stage3 stage);
 }
