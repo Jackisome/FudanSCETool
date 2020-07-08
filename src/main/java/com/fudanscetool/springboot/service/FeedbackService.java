@@ -13,7 +13,14 @@ public class FeedbackService {
     @Autowired
     private FeedbackDAO fdao;
 
-    public List<Feedback> showUserFeedback(String userID) {}
+    /**
+     * 根据userID返回用户的所有反馈
+     * @param userID
+     * @return
+     */
+    public List<Feedback> showUserFeedback(String userID) {
+        return fdao.
+    }
 
     public List<Feedback> showAllFeedback() {}
 

@@ -13,4 +13,6 @@ public class User {
     private boolean isAdministrator;
 
     private Timestamp registerTime;
+
+    private int ownedProjectNumber;
 }
