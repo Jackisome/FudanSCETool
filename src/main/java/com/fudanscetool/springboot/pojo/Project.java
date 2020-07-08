@@ -15,9 +15,13 @@ public class Project {
 
     private String programType;
 
-    private String language;
+    private String codeLanguage;
 
-    private ArrayList<Float> scaleFactor;
+    private float PREC;
+    private float FLEX;
+    private float RESL;
+    private float TEAM;
+    private float PMAT;
 
     private Stage1 stage1;
 

@@ -10,7 +10,21 @@ public class Stage3 {
 
     private float size;
 
-    private ArrayList<Float> EM;
+    private float RELY;
+    private float DATA;
+    private float CPLX;
+    private float TIME;
+    private float STOR;
+    private float VIRT;
+    private float RURE;
+    private float ACAP;
+    private float AEXP;
+    private float PCAP;
+    private float VEXP;
+    private float LEXP;
+    private float MODP;
+    private float TOOL;
+    private float SCED;
 
     private float estimateLoad;
 }

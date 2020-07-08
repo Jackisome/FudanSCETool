@@ -8,21 +8,21 @@ import java.util.List;
 
 @Repository
 public interface UserDAO {
-    @Insert("insert into user (userID, userPassword, isAdministrator, registerTime, ownedProjectNumber)values(#{userId}, #{password}, #{isAdministrator}, #{registerTime}, #{ownedProjectNumber})")
+    @Insert("INSERT INTO user (userID, userPassword, isAdministrator, registerTime, ownedProjectNumber) VALUES(#{userId}, #{password}, #{isAdministrator}, #{registerTime}, #{ownedProjectNumber})")
     int insertUser(User user);
 
-    @Select("")
+    @Select("SELECT userID, userPassword, isAdministrator, registerTime, ownedProjectNumber FROM user WHERE userID=#{userID}")
     User searchUser(String userID);
 
-    @Update("")
+    @Update("UPDATE user SET userPassword=#{password} WHERE userID=#{userID}")
     int updatePassword(String userID, String password);
 
-    @Select("")
+    @Select("SELECT * FROM user")
     List<User> searchAllUser();
 
-    @Delete("")
+    @Delete("DELETE FROM user WHERE userID=#{userID}")
     int deleteUser(String userID);
 
-    @Select("")
+    @Select("SELECT COUNT(*) FROM user")
     int countUserNumber();
 }
