@@ -15,6 +15,7 @@ import java.util.Map;
 
 @Service
 public class ProjectService {
+    /*
     @Autowired
     private ProjectDAO pdao;
 
@@ -56,4 +57,6 @@ public class ProjectService {
     public List<Project> findAllProject() {}
 
     public int countWaitProject(String status) {}
+
+     */
 }

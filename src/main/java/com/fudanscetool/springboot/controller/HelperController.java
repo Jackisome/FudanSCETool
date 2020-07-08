@@ -6,10 +6,13 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class HelperController {
+    /*
     @Autowired
     private HelperService hs;
 
     public String showIntroduction() {}
 
     public String showModel() {}
+
+     */
 }

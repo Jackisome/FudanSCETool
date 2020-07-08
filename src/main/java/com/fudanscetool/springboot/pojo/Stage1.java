@@ -6,7 +6,7 @@ import lombok.Data;
 public class Stage1 {
     private String projectID;
 
-    private float size;
+    private double size;
 
-    private float estimateLoad;
+    private double estimateLoad;
 }

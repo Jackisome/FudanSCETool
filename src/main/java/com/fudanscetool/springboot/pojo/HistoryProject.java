@@ -17,17 +17,11 @@ public class HistoryProject {
 
     private String codeLanguage;
 
-    private float PREC;
-    private float FLEX;
-    private float RESL;
-    private float TEAM;
-    private float PMAT;
+    private String PREC;
+    private String FLEX;
+    private String RESL;
+    private String TEAM;
+    private String PMAT;
 
-    private Stage1 stage1;
-
-    private Stage2 stage2;
-
-    private Stage3 stage3;
-
-    private float realLoad;
+    private double realLoad;
 }

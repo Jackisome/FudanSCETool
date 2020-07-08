@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
+@Mapper
 public interface UserDAO {
     @Insert("INSERT INTO user (userID, userPassword, isAdministrator, registerTime, ownedProjectNumber) VALUES(#{userId}, #{password}, #{isAdministrator}, #{registerTime}, #{ownedProjectNumber})")
     int insertUser(User user);
@@ -26,6 +27,6 @@ public interface UserDAO {
     @Select("SELECT COUNT(*) FROM user")
     int countUserNumber();
 
-    @Update("UPDATE user SET ownedProjectNumber=#{owwnedProjectNumber} WHERE userID=#{userID}")
+    @Update("UPDATE user SET ownedProjectNumber=#{ownedProjectNumber} WHERE userID=#{userID}")
     int updateOwnedProjectNumber(String userID, int ownedProjectNumber);
 }

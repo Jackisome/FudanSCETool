@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class HelperService {
+    /*
     @Value()
     private String useIntroduction;
 
@@ -15,4 +16,7 @@ public class HelperService {
     public String showIntroduction() {}
 
     public String showModel() {}
+
+     */
 }
+

@@ -9,6 +9,7 @@ import java.util.List;
 
 @Controller
 public class FeedbackController {
+    /*
     @Autowired
     private FeedbackService fs;
 
@@ -17,4 +18,7 @@ public class FeedbackController {
     public List<Feedback> showAllFeedback() {}
 
     public boolean createFeedback() {}
+
+     */
 }
+

@@ -16,21 +16,21 @@ public class UserService {
     @Autowired
     private ProjectDAO pdao;
 
-    public boolean register(User user) {}
+    public boolean register(User user) {return true;}
 
-    public boolean login(User user) {}
+    public boolean login(User user) {return true;}
 
-    public boolean addAdministrator(User user) {}
+    public boolean addAdministrator(User user) {return true;}
 
-    public boolean changePassword(String userID, String oldPassword, String newPassword) {}
+    public boolean changePassword(String userID, String oldPassword, String newPassword) {return true;}
 
-    public List<User> showAllUser() {}
+    public List<User> showAllUser() {return null;}
 
-    public boolean deleteUser(String userID) {}
+    public boolean deleteUser(String userID) {return true;}
 
-    public User findUser(String userID) {}
+    public User findUser(String userID) {return null;}
 
-    public boolean changeUserProjectNumber(String userID, int changeNumber) {}
+    public boolean changeUserProjectNumber(String userID, int changeNumber) {return true;}
 
-    public int countUserNumber() {}
+    public int countUserNumber() {return udao.countUserNumber();}
 }

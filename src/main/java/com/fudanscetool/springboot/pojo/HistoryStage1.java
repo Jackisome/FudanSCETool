@@ -6,5 +6,5 @@ import lombok.Data;
 public class HistoryStage1 {
     private String projectID;
 
-    private float size;
+    private double size;
 }

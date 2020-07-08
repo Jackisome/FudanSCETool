@@ -8,21 +8,23 @@ import java.util.ArrayList;
 public class HistoryStage3 {
     private String projectID;
 
-    private float size;
+    private double size;
 
-    private float RELY;
-    private float DATA;
-    private float CPLX;
-    private float TIME;
-    private float STOR;
-    private float VIRT;
-    private float RURE;
-    private float ACAP;
-    private float AEXP;
-    private float PCAP;
-    private float VEXP;
-    private float LEXP;
-    private float MODP;
-    private float TOOL;
-    private float SCED;
+    private String RELY;
+    private String DATA;
+    private String DOCU;
+    private String CPLX;
+    private String RUSE;
+    private String ACAP;
+    private String AEXP;
+    private String PCAP;
+    private String PEXP;
+    private String LTEX;
+    private String PCON;
+    private String TIME;
+    private String STOR;
+    private String PVOL;
+    private String TOOL;
+    private String SCED;
+    private String SITE;
 }

@@ -8,13 +8,13 @@ import java.util.ArrayList;
 public class HistoryStage2 {
     private String projectID;
 
-    private float size;
+    private double size;
 
-    private float PCPX;
-    private float RUSE;
-    private float PDIF;
-    private float PERS;
-    private float PREX;
-    private float FCIL;
-    private float SCED;
+    private String PCPX;
+    private String RUSE;
+    private String PDIF;
+    private String PERS;
+    private String PREX;
+    private String FCIL;
+    private String SCED;
 }

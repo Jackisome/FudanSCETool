@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class ProjectController {
+    /*
     @Autowired
     private ProjectService ps;
 
@@ -32,4 +33,6 @@ public class ProjectController {
     public boolean deleteProject() {}
 
     public xxx showAllProject() {}
+
+     */
 }

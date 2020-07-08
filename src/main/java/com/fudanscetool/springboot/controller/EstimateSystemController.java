@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class EstimateSystemController {
+    /*
     private EstimateSystemService hs;
 
     @Autowired
@@ -34,5 +35,5 @@ public class EstimateSystemController {
 
     public xxx showAdministratorInfo() {}
 
-
+     */
 }
