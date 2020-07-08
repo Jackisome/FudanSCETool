@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 @Data
 public class User {
-    private String projectID;
+    private String userID;
 
     private String password;
 
