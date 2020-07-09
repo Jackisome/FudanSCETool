@@ -22,6 +22,7 @@ public class UserController {
     @PostMapping(value = "register")
     @ResponseBody
     public boolean register(@RequestBody User user) {
+        //System.out.println(user);
         return userService.register(user);
     }
 

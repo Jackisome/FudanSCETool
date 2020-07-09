@@ -36,7 +36,13 @@ public class ProjectService {
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
         System.out.println(stackTrace[1].getMethodName());
 
-        return pdao.insertProject(project) != 0;
+        if (pdao.searchProject(project.getProjectID()) != null) {
+            return false;
+        }
+        else {
+            pdao.insertProject(project);
+            return true;
+        }
     }
 
     public float changeFuncToSize(int funct, String codeLanguage) {
@@ -297,11 +303,60 @@ public class ProjectService {
         return pdao.searchProject(projectID);
     }
 
+    public boolean createStage1(Stage1 stage) {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
+
+        if (s1dao.searchStage1(stage.getProjectID()) != null) {
+            return false;
+        }
+        else {
+            s1dao.insertStage1(stage);
+            return true;
+        }
+    }
+
+    public boolean createStage2(Stage2  stage) {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
+
+        if (s2dao.searchStage2(stage.getProjectID()) != null) {
+            return false;
+        }
+        else {
+            s2dao.insertStage2(stage);
+            return true;
+        }
+    }
+
+    public boolean createStage3(Stage3 stage) {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
+
+        if (s3dao.searchStage3(stage.getProjectID()) != null) {
+            return false;
+        }
+        else {
+            s3dao.insertStage3(stage);
+            return true;
+        }
+    }
+
+    public double getProjectWeight(Project project) {
+        return 0.91 + 0.01 * (changeScaleFactorToRate("PREC", project.getPREC()) + changeScaleFactorToRate("FLEX", project.getFLEX()) + changeScaleFactorToRate("RESL", project.getRESL()) + changeScaleFactorToRate("TEAM", project.getTEAM()) + changeScaleFactorToRate("PMAT", project.getPMAT()));
+    }
+
+    public double getStage2MultipleEM(Stage2 stage) {
+        return changeEMToRate("PCPX", stage.getPCPX()) * changeEMToRate("RUSE", stage.getRUSE()) * changeEMToRate("PDIF", stage.getPDIF()) * changeEMToRate("PERS", stage.getPERS()) * changeEMToRate("PREX", stage.getPREX()) * changeEMToRate("FCIL", stage.getFCIL()) * changeEMToRate("SCED", stage.getSCED());
+    }
+    public double getStage3MultipleEM(Stage3 stage) {
+        return changeEMToRate("RELY", stage.getRELY()) * changeEMToRate("DATA", stage.getDATA()) * changeEMToRate("DOCU", stage.getDOCU()) * changeEMToRate("CPLX", stage.getCPLX()) * changeEMToRate("RUSE", stage.getRUSE()) * changeEMToRate("TIME", stage.getTIME()) * changeEMToRate("STOR", stage.getSTOR()) * changeEMToRate("PVOL", stage.getPVOL()) * changeEMToRate("ACAP", stage.getACAP()) * changeEMToRate("AEXP", stage.getAEXP()) * changeEMToRate("PCAP", stage.getPCAP()) * changeEMToRate("PEXP", stage.getPEXP()) * changeEMToRate("LTEX", stage.getLTEX()) * changeEMToRate("PCON", stage.getPCON()) * changeEMToRate("TOOL", stage.getTOOL()) * changeEMToRate("SCED", stage.getSCED()) * changeEMToRate("SITE", stage.getSITE());
+    }
     public double estimateStage1(Project project, Stage1 stage, String model) {
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
         System.out.println(stackTrace[1].getMethodName());
 
-        double weight = 0.91 + 0.01 * (changeScaleFactorToRate("PREC", project.getPREC()) + changeScaleFactorToRate("FLEX", project.getFLEX()) + changeScaleFactorToRate("RESL", project.getRESL()) + changeScaleFactorToRate("TEAM", project.getTEAM()) + changeScaleFactorToRate("PMAT", project.getPMAT()));
+        double weight = getProjectWeight(project);
         if (model.equals("model1")) {
             return new COCOMOIIModel().estimateStage1(weight, stage);
         }
@@ -395,7 +450,21 @@ public class ProjectService {
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
         System.out.println(stackTrace[1].getMethodName());
 
-        return pdao.updateProjectStatus(projectID, "applying") != 0;
+        return pdao.updateProjectStatus(projectID, "待审核") != 0;
+    }
+
+    public boolean aggreApplyment(String projectID) {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
+
+        return pdao.updateProjectStatus(projectID, "已入库") != 0;
+    }
+
+    public boolean rejectApplyment(String projectID) {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        System.out.println(stackTrace[1].getMethodName());
+
+        return pdao.updateProjectStatus(projectID, "管理员拒绝") != 0;
     }
 
     public File outputProject(String projectID) {
@@ -510,10 +579,22 @@ public class ProjectService {
         return pdao.searchAllProject();
     }
 
-    public int countWaitProject(String status) {
+    public int countWaitProject() {
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
         System.out.println(stackTrace[1].getMethodName());
 
         return pdao.countWaitProjectNumber();
+    }
+
+    public Stage1 findStage1(String projectID) {
+        return s1dao.searchStage1(projectID);
+    }
+
+    public Stage2 findStage2(String projectID) {
+        return s2dao.searchStage2(projectID);
+    }
+
+    public Stage3 findStage3(String projectID) {
+        return s3dao.searchStage3(projectID);
     }
 }

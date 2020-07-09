@@ -4,7 +4,6 @@ import com.fudanscetool.springboot.dao.ProjectDAO;
 import com.fudanscetool.springboot.dao.UserDAO;
 import com.fudanscetool.springboot.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.origin.SystemEnvironmentOrigin;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,19 +20,21 @@ public class UserService {
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
         System.out.println(stackTrace[1].getMethodName());
 
-        return udao.insertUser(user) != 0;
+        if (udao.searchUser(user.getUserID()) != null) {
+            return false;
+        }
+        else
+        {
+            udao.insertUser(user);
+            return true;
+        }
     }
 
     public boolean login(User user) {
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
         System.out.println(stackTrace[1].getMethodName());
 
-        User userInDatabase = udao.searchUser(user.getUserID());
-        if(userInDatabase == null) {
-            System.out.println("User doesn't exist");
-            return false;
-        }
-        return user.getUserPassword().equals(userInDatabase.getUserPassword());
+        return user.getUserPassword().equals(udao.searchUser(user.getUserID()).getUserPassword());
     }
 
     public boolean addAdministrator(User user) {
@@ -41,22 +42,20 @@ public class UserService {
         System.out.println(stackTrace[1].getMethodName());
 
         user.setAdministrator(true);
-        return udao.insertUser(user) != 0;
+        if (udao.searchUser(user.getUserID()) != null) {
+            return false;
+        }
+        else
+        {
+            udao.insertUser(user);
+            return true;
+        }
     }
 
     public boolean changePassword(String userID, String oldPassword, String newPassword) {
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
         System.out.println(stackTrace[1].getMethodName());
 
-        User userInDatabase = udao.searchUser(userID);
-        if(userInDatabase == null) {
-            System.out.println("User doesn't exist");
-            return false;
-        }
-        if(!userInDatabase.getUserPassword().equals(oldPassword)) {
-            System.out.println("oldPassword doesn't match");
-            return false;
-        }
         return udao.updatePassword(userID, newPassword) != 0;
     }
 

@@ -18,5 +18,5 @@ public class Stage2 {
     private String FCIL;
     private String SCED;
 
-    private float estimateLoad;
+    private double estimateLoad;
 }
