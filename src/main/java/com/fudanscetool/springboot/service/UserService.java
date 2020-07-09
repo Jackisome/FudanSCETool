@@ -4,6 +4,7 @@ import com.fudanscetool.springboot.dao.ProjectDAO;
 import com.fudanscetool.springboot.dao.UserDAO;
 import com.fudanscetool.springboot.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.origin.SystemEnvironmentOrigin;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,7 +28,12 @@ public class UserService {
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
         System.out.println(stackTrace[1].getMethodName());
 
-        return user.getPassword().equals(udao.searchUser(user.getUserID()));
+        User userInDatabase = udao.searchUser(user.getUserID());
+        if(userInDatabase == null) {
+            System.out.println("User doesn't exist");
+            return false;
+        }
+        return user.getUserPassword().equals(userInDatabase.getUserPassword());
     }
 
     public boolean addAdministrator(User user) {
