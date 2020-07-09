@@ -48,6 +48,15 @@ public class UserService {
         StackTraceElement[] stackTrace = new Throwable().getStackTrace();
         System.out.println(stackTrace[1].getMethodName());
 
+        User userInDatabase = udao.searchUser(userID);
+        if(userInDatabase == null) {
+            System.out.println("User doesn't exist");
+            return false;
+        }
+        if(!userInDatabase.getUserPassword().equals(oldPassword)) {
+            System.out.println("oldPassword doesn't match");
+            return false;
+        }
         return udao.updatePassword(userID, newPassword) != 0;
     }
 

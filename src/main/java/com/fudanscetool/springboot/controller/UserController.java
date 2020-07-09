@@ -1,5 +1,6 @@
 package com.fudanscetool.springboot.controller;
 
+import com.fudanscetool.springboot.dao.UserDAO;
 import com.fudanscetool.springboot.pojo.User;
 import com.fudanscetool.springboot.result.Result;
 import com.fudanscetool.springboot.service.UserService;
@@ -12,29 +13,28 @@ import java.util.*;
 
 @Controller
 public class UserController {
+    @Autowired
+    private UserDAO userdao;
+    @Autowired
+    private UserService userService;
 
-    //@Autowired
-    private UserService us;
-
-    public boolean register() {return false;}
+    @CrossOrigin
+    @PostMapping(value = "register")
+    @ResponseBody
+    public boolean register(@RequestBody User user) {
+        return userService.register(user);
+    }
 
     @CrossOrigin
     @PostMapping(value = "login")
     @ResponseBody
-    public Result login(@RequestBody User requestUser) {
-        System.out.println("Receive " + requestUser);
-        String userID = requestUser.getUserID();
-        //userID = HtmlUtils.htmlEscape(userID);
-
-        if (!Objects.equals("admin", userID) || !Objects.equals("123456", requestUser.getPassword())) {
-            String message = "账号密码错误";
-            System.out.println(message);
-            return new Result(400);
-        } else {
-            return new Result(200);
-        }
+    public boolean login(@RequestBody User user) {
+        //boolean loginSuccess = userService.login(user);
+        //System.out.println(loginSuccess);
+        return userService.login(user);
     }
 
+    // 用map接受和发送数据
     /*
     @CrossOrigin
     @PostMapping(value = "login")
@@ -62,14 +62,41 @@ public class UserController {
     }
      */
 
+    @CrossOrigin
+    @PostMapping(value = "addAdministrator")
+    @ResponseBody
+    public boolean addAdministrator(@RequestBody User user) {
+        return userService.addAdministrator(user);
+    }
 
-    public boolean addAdministrator() {return false;}
+    @CrossOrigin
+    @PostMapping(value = "changePassword")
+    @ResponseBody
+    public boolean changePassword(@RequestBody HashMap<String, String> requestUser) {
+        String userID = requestUser.get("userID");
+        String oldPassword = requestUser.get("oldPassword");
+        String newPassword = requestUser.get("newPassword");
+        return userService.changePassword(userID, oldPassword, newPassword);
+    }
 
-    public boolean changePassword() {return false;}
+    @CrossOrigin
+    @PostMapping(value = "showAllUser")
+    @ResponseBody
+    public List<User> showAllUser() {
+        return userService.showAllUser();
+    }
 
-    public List<User> showAllUser() {return null;}
+    @CrossOrigin
+    @PostMapping(value = "deleteUser")
+    @ResponseBody
+    public boolean deleteUser(@RequestBody String userID) {
+        return userService.deleteUser(userID);
+    }
 
-    public boolean deleteUser() {return false;}
-
-    public boolean logout() {return false;}
+    @CrossOrigin
+    @PostMapping(value = "logout")
+    @ResponseBody
+    public boolean logout() {
+        return true;
+    }
 }
