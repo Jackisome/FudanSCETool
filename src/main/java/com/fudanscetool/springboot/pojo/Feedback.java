@@ -8,7 +8,9 @@ import java.sql.Timestamp;
 public class Feedback {
     private Timestamp feedbackTime;
 
-    private String feedbackUser;
+    private String userID;
 
     private String feedbackContent;
+
+    private String feedbackStatus;
 }

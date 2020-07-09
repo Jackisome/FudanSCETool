@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface UserDAO {
-    @Insert("INSERT INTO user (userID, userPassword, isAdministrator, registerTime, ownedProjectNumber) VALUES(#{userId}, #{password}, #{isAdministrator}, #{registerTime}, #{ownedProjectNumber})")
+    @Insert("INSERT INTO user VALUES(#{userID}, #{userPassword}, #{isAdministrator}, #{registerTime}, #{ownedProjectNumber})")
     int insertUser(User user);
 
     @Select("SELECT userID, userPassword, isAdministrator, registerTime, ownedProjectNumber FROM user WHERE userID=#{userID}")
