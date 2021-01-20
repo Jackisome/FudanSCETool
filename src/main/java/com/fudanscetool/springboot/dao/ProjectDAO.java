@@ -38,4 +38,7 @@ public interface ProjectDAO {
 
     @Select("SELECT COUNT (*) FROM project WHERE projectStatus='待审核'")
     int countWaitProjectNumber();
+
+    @Select("SELECT * FROM project WHERE projectOwner=#{userID}")
+    List<Project> findUserProject(String userID);
 }

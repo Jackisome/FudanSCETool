@@ -597,4 +597,20 @@ public class ProjectService {
     public Stage3 findStage3(String projectID) {
         return s3dao.searchStage3(projectID);
     }
+
+    public boolean deleteStage1(String projectID) {
+        return s1dao.deleteStage1(projectID) == 1;
+    }
+
+    public boolean deleteStage2(String projectID) {
+        return s2dao.deleteStage2(projectID) == 1;
+    }
+
+    public boolean deleteStage3(String projectID) {
+        return s3dao.deleteStage3(projectID) == 1;
+    }
+
+    public List<Project> findProjectByOwner(String userID) {
+        return pdao.findUserProject(userID);
+    }
 }

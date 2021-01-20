@@ -107,6 +107,9 @@ public class ProjectController {
     @PostMapping(value = "deleteProject")
     @ResponseBody
     public boolean deleteProject(@RequestBody String projectID) {
+        projectService.deleteStage1(projectID);
+        projectService.deleteStage2(projectID);
+        projectService.deleteStage3(projectID);
         return projectService.deleteProject(projectID);
     }
 

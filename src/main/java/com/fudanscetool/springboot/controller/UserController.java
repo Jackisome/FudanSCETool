@@ -1,8 +1,10 @@
 package com.fudanscetool.springboot.controller;
 
 import com.fudanscetool.springboot.dao.UserDAO;
+import com.fudanscetool.springboot.pojo.Project;
 import com.fudanscetool.springboot.pojo.User;
 import com.fudanscetool.springboot.result.Result;
+import com.fudanscetool.springboot.service.ProjectService;
 import com.fudanscetool.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,8 @@ public class UserController {
     private UserDAO userdao;
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProjectService projectService;
 
     @CrossOrigin
     @PostMapping(value = "register")
@@ -91,6 +95,14 @@ public class UserController {
     @PostMapping(value = "deleteUser")
     @ResponseBody
     public boolean deleteUser(@RequestBody String userID) {
+        List<Project> projects = projectService.findProjectByOwner(userID);
+        for(int i = 0; i < projects.size(); ++i) {
+            String projectID = projects.get(i).getProjectID();
+            projectService.deleteStage1(projectID);
+            projectService.deleteStage2(projectID);
+            projectService.deleteStage3(projectID);
+            projectService.deleteProject(projectID);
+        }
         return userService.deleteUser(userID);
     }
 
